@@ -54,6 +54,18 @@
   .bar-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
   .round{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:transparent;color:#fff;display:grid;place-items:center;cursor:default}
   @media (max-width:720px){.topnav{display:none}}
+  .prefs-btn{display:flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.75);background:transparent;color:#fff;border-radius:999px;padding:8px 14px;font-weight:800;font-size:.9rem;cursor:pointer;white-space:nowrap;margin-left:auto}
+  .prefs-btn:hover{background:rgba(255,255,255,.14)}
+  .topnav + .prefs-btn{margin-left:0}
+  .topnav[hidden] + .prefs-btn{margin-left:auto}
+  #appActions{margin-left:0}
+  @media (max-width:520px){.prefs-btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.prefs-btn{padding:9px}}
+  select.input{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:42px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3 5l4 4 4-4' fill='none' stroke='%23577079' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center}
+  .pc-card{background:var(--brand-soft);border-radius:16px;padding:16px;margin-top:18px}
+  .notice-ok{background:color-mix(in srgb,var(--ok) 14%,var(--card));border-radius:12px;padding:12px 14px;margin-top:12px}
+  .text-link{display:block;margin:16px auto 0;text-align:center}
 
   /* Auth layout */
   .auth{display:grid;place-items:start center;padding:40px 16px 60px}
@@ -180,6 +192,10 @@
     <li><a href="#">Downloads</a></li>
     <li><a href="#">FAQs</a></li>
   </ul>
+  <button class="prefs-btn" id="managePrefsBtn" type="button" title="Manage preferences">
+    <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h7M12 4h2M2 12h2M7 12h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10.5" cy="4" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="5.5" cy="12" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+    <span class="lbl">Manage preferences</span>
+  </button>
   <div class="bar-actions" id="appActions" hidden>
     <span class="round" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7.5 7.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5v.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="15" r="1.2" fill="currentColor"/></svg></span>
     <span class="round" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.5" fill="currentColor"/><path d="M3.5 17c.8-3.4 3.4-5 6.5-5s5.7 1.6 6.5 5Z" fill="currentColor"/></svg></span>
@@ -203,6 +219,7 @@
         <div class="err"></div>
       </div>
       <button class="btn btn-primary" id="continueBtn" type="button">Continue</button>
+      <button class="link text-link" id="managePrefsLink" type="button">Manage preferences</button>
     </section>
 
     <!-- 2. OTP -->
@@ -225,6 +242,20 @@
       <label class="check square"><input type="checkbox" id="staySignedIn"><span class="box"><svg width="12" height="12" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Stay signed in</label>
       <p class="resend"><span id="resendWait">Request new OTP in <span id="resendSecs">30</span> secs</span><button class="link" id="resendBtn" type="button" hidden>Request new OTP</button></p>
       <button class="btn btn-primary" id="otpBtn" type="button">Continue</button>
+    </section>
+
+    <!-- Manage preferences -->
+    <section class="screen" id="s-manage">
+      <button class="back" type="button" data-to="s-login" id="manageBack" aria-label="Back"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M14 4 7 11l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h1>Manage preferences</h1>
+      <p class="sub">Enter the mobile number you signed up with, and we'll show the email addresses linked to it.</p>
+      <div class="field">
+        <label for="lookupMobile">Mobile number</label>
+        <div class="prefix"><span>+91</span><input class="input" id="lookupMobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" placeholder="10-digit number"></div>
+        <div class="err"></div>
+      </div>
+      <button class="btn btn-primary" id="lookupBtn" type="button">Find email</button>
+      <div id="lookupResult" aria-live="polite"></div>
     </section>
 
     <!-- 3. Details + notice -->
@@ -408,6 +439,7 @@ function show(id) {
   $("#appArea").hidden = !inApp;
   $("#topnav").hidden = inApp;
   $("#appActions").hidden = !inApp;
+  $("#managePrefsBtn").hidden = id === "s-manage";
   document.title = inApp ? "Acme Cloud – Home" : "Acme Cloud – Sign in";
   $$(".screen").forEach(s => s.classList.toggle("active", s.id === id));
   window.scrollTo({ top: 0 });
@@ -636,6 +668,88 @@ function restart() {
   $$("#channelList input").forEach(b => b.checked = true);
   $$("#interestList input").forEach(b => b.checked = false);
   show("s-login");
+}
+
+/* ---------- Manage preferences ---------- */
+const lookupMobile = $("#lookupMobile");
+lookupMobile.addEventListener("input", () => { lookupMobile.value = lookupMobile.value.replace(/\D/g, "").slice(0, 10); fieldError(lookupMobile, ""); });
+lookupMobile.addEventListener("keydown", e => { if (e.key === "Enter") $("#lookupBtn").click(); });
+let lookedUpMobile = "";
+
+function openManage() {
+  const cur = $(".screen.active");
+  if (cur && cur.id === "s-manage") return;
+  $("#manageBack").dataset.to = cur ? cur.id : "s-login";
+  lookupMobile.value = ""; fieldError(lookupMobile, "");
+  $("#lookupResult").innerHTML = "";
+  show("s-manage");
+  lookupMobile.focus();
+}
+$("#managePrefsBtn").addEventListener("click", openManage);
+$("#managePrefsLink").addEventListener("click", openManage);
+
+async function callSheet(body) {
+  const res = await fetch(CONFIG.SHEETS_URL.trim(), {
+    method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(body), redirect: "follow"
+  }).catch(() => { throw new Error("The Google Sheet couldn't be reached. Try again in a moment."); });
+  const data = await res.json().catch(() => ({}));
+  if (!data.ok) throw new Error(data.error || "Something went wrong. Try again in a moment.");
+  return data;
+}
+
+$("#lookupBtn").addEventListener("click", async () => {
+  if (!fieldError(lookupMobile, /^[6-9]\d{9}$/.test(lookupMobile.value) ? "" : "Enter a 10-digit mobile number starting with 6, 7, 8 or 9.")) return;
+  const btn = $("#lookupBtn"), out = $("#lookupResult");
+  btn.disabled = true; btn.textContent = "Searching…"; out.innerHTML = "";
+  try {
+    let emails;
+    if (!CONFIG.SHEETS_URL) {
+      let list = [];
+      try { list = JSON.parse(localStorage.getItem("acme_cloud_demo_submissions") || "[]"); } catch (e) {}
+      emails = [...new Set(list.filter(r => r.applicant && r.applicant.mobile === lookupMobile.value).map(r => r.applicant.email))];
+    } else {
+      emails = (await callSheet({ action: "lookup_emails", mobile: lookupMobile.value })).emails || [];
+    }
+    lookedUpMobile = lookupMobile.value;
+    if (!emails.length) {
+      out.innerHTML = `<p class="pc-card">We couldn't find an account for ${esc(maskMobile(lookedUpMobile))}. Check the number, or sign up first.</p>`;
+      return;
+    }
+    out.innerHTML = `
+      <div class="pc-card">
+        <p>${emails.length === 1 ? "This email is" : `These ${emails.length} emails are`} linked to ${esc(maskMobile(lookedUpMobile))}. Choose one and we'll email it a link to your preference center.</p>
+        <div class="field">
+          <label for="emailSelect">Email</label>
+          <select class="input" id="emailSelect">${emails.map((e, i) => `<option value="${i}">${esc(e)}</option>`).join("")}</select>
+        </div>
+        <button class="btn btn-primary" id="sendLinkBtn" type="button">Email me a link</button>
+        <p class="hint">We'll email a secure link to your preference center, where you can change your choices.</p>
+        <div id="linkResult" aria-live="polite"></div>
+      </div>`;
+    $("#sendLinkBtn").addEventListener("click", sendPreferenceLink);
+  } catch (err) {
+    out.innerHTML = `<p class="err">${esc(err.message)}</p>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "Find email";
+  }
+});
+
+async function sendPreferenceLink() {
+  const btn = $("#sendLinkBtn"), out = $("#linkResult"), sel = $("#emailSelect");
+  if (!CONFIG.SHEETS_URL) {
+    out.innerHTML = `<p class="err">Demo mode: set CONFIG.SHEETS_URL to send preference center links.</p>`;
+    return;
+  }
+  btn.disabled = true; btn.textContent = "Sending…"; out.innerHTML = "";
+  try {
+    const data = await callSheet({ action: "send_pc_link", mobile: lookedUpMobile, index: Number(sel.value) });
+    out.innerHTML = `<div class="notice-ok"><b>Check your inbox.</b> We've emailed a link to ${esc(data.email)}. Open it to manage your preferences. It can take a few minutes to arrive.</div>`;
+  } catch (err) {
+    out.innerHTML = `<p class="err">${esc(err.message)}</p>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "Email me a link";
+  }
 }
 
 resetJourney();
