@@ -176,6 +176,70 @@
   .demo-note{font-size:.88rem;color:var(--muted);text-align:left}
   details{text-align:left;margin-top:8px}
   details pre{background:var(--brand-soft);border-radius:12px;padding:12px;overflow-x:auto;font-size:.74rem;max-height:300px}
+  /* ===== Future Preference Portal ===== */
+  .portal-btn{display:flex;align-items:center;gap:8px;border:0;background:#fff;color:var(--bar);border-radius:999px;padding:9px 15px;font-weight:800;font-size:.9rem;cursor:pointer;white-space:nowrap}
+  .portal-btn:hover{background:#E8F3F5}
+  @media (max-width:520px){.portal-btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.portal-btn{padding:9px}}
+  .portal{position:relative;min-height:calc(100vh - 64px);background:var(--bg);padding:0 clamp(16px,3vw,40px) 56px}
+  .pv-band{position:absolute;inset:0 0 auto;height:260px;background:
+    radial-gradient(circle at 12% 30%,rgba(255,255,255,.07) 0 2px,transparent 3px) 0 0/24px 24px,
+    linear-gradient(180deg,var(--bar),color-mix(in srgb,var(--bar) 82%,#000))}
+  .pv-wrap{position:relative;max-width:1320px;margin:0 auto;padding-top:24px}
+  .pv-head{display:flex;align-items:flex-start;gap:14px;color:#fff;margin-bottom:22px}
+  .pv-head .portal-back{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:12px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;flex:none;margin-top:4px}
+  .pv-kicker{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:2px}
+  .pv-head h1{margin:0;color:#fff;font-size:clamp(1.6rem,3vw,2.2rem)}
+  .pv-head p{margin:4px 0 0;opacity:.88;max-width:62ch}
+  .pv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(250px,.72fr);gap:20px;align-items:start}
+  @media (max-width:1100px){.pv-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pv-side{grid-column:1 / -1;grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:760px){.pv-grid{grid-template-columns:1fr}.pv-side{grid-template-columns:1fr}}
+  .pv-col{display:grid;gap:20px}
+  .pv-sec{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px clamp(16px,2.4vw,26px);box-shadow:0 6px 20px rgba(14,40,50,.06)}
+  .pv-sec > header{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
+  .pv-sec h2{font-size:1.15rem;margin:0}
+  .pv-sec header p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+  .pv-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);flex:none}
+  .pv-list{list-style:none;margin:0;padding:0}
+  .pv-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+  .pv-row:first-child{border-top:0}
+  .pv-row .what{flex:1;min-width:0}
+  .pv-row .what b{display:block;font-weight:700}
+  .pv-row .what small{display:block;color:var(--muted);font-size:.85rem}
+  .pv-row .ri{color:var(--brand);flex:none}
+  .switch{position:relative;width:48px;height:28px;border-radius:999px;border:0;background:var(--line);cursor:pointer;flex:none;transition:background .2s}
+  .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+  .switch[aria-checked="true"]{background:var(--brand)}
+  .switch[aria-checked="true"]::after{transform:translateX(20px)}
+  @media (prefers-reduced-motion:reduce){.switch,.switch::after{transition:none}}
+  .who{display:flex;align-items:center;gap:14px;padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+  .who .ini{width:56px;height:56px;border-radius:16px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-weight:800;font-size:1.3rem;flex:none}
+  .who b{font-size:1.2rem}
+  .who small{display:block;color:var(--muted)}
+  .details{display:grid;gap:10px}
+  .dbox{display:flex;justify-content:space-between;gap:12px;border:1px dashed var(--line);border-radius:12px;padding:10px 14px}
+  .dbox small{color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;align-self:center}
+  .dbox span{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+  .pv-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px}
+  .pv-actions .link{font-size:.9rem}
+  .status{font-size:.82rem;font-weight:700;color:var(--muted)}
+  .status.on{color:var(--ok)}
+  .pill-new{font-size:.68rem;font-weight:800;background:var(--accent);color:#3A2A00;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+  .mini-btn{flex:none;min-width:84px;border-radius:999px;padding:8px 16px;font-weight:800;font-size:.88rem;cursor:pointer;border:1.5px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .mini-btn[data-linked="true"]{background:transparent;border-color:var(--line);color:var(--muted)}
+  .mini-btn[data-linked="true"]:hover{border-color:var(--danger);color:var(--danger)}
+  .pv-side{display:grid;gap:16px}
+  .hcard{border-radius:20px;padding:22px;background:linear-gradient(160deg,var(--brand-soft),color-mix(in srgb,var(--brand) 22%,var(--card)));color:var(--ink);border:1px solid var(--line)}
+  .hcard.lead{background:linear-gradient(150deg,var(--brand),color-mix(in srgb,var(--brand) 60%,#1B6E8A));color:var(--brand-ink);border:0}
+  .hcard svg{display:block;margin-bottom:12px}
+  .hcard p{margin:0 0 4px}
+  .hcard h3{font-size:1.35rem;line-height:1.25;margin:2px 0 8px}
+  .hcard .tag{font-weight:800;opacity:.85;margin-bottom:16px}
+  .hbtn{display:block;width:100%;border-radius:12px;padding:12px;font-weight:800;text-align:center;cursor:pointer;border:0;background:var(--brand);color:var(--brand-ink)}
+  .hcard.lead .hbtn{background:transparent;color:inherit;border:1.5px solid currentColor}
+  .pv-save{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:22px}
+  .pv-save span{margin-right:auto;color:var(--muted);font-size:.92rem}
+  .pv-save .btn{width:auto;padding:12px 22px;white-space:nowrap}
+  @media (max-width:560px){.pv-save span{flex-basis:100%}.pv-save .btn{flex:1}}
   .spinner{width:40px;height:40px;border-radius:50%;border:4px solid var(--brand-soft);border-top-color:var(--brand);animation:spin 1s linear infinite;margin:30px auto 16px}
   @keyframes spin{to{transform:rotate(360deg)}}
 </style>
@@ -195,6 +259,10 @@
   <button class="prefs-btn" id="managePrefsBtn" type="button" title="Manage preferences">
     <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h7M12 4h2M2 12h2M7 12h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="10.5" cy="4" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="5.5" cy="12" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
     <span class="lbl">Manage preferences</span>
+  </button>
+  <button class="portal-btn" id="portalBtn" type="button" title="Future Preference Portal">
+    <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m7 10 2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="lbl">Future Preference Portal</span>
   </button>
   <div class="bar-actions" id="appActions" hidden>
     <span class="round" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M7.5 7.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5v.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="15" r="1.2" fill="currentColor"/></svg></span>
@@ -295,6 +363,99 @@
     </section>
 
   </div>
+</main>
+
+<!-- ===== Future Preference Portal ===== -->
+<main class="portal" id="portalArea" hidden aria-live="polite">
+  <div class="pv-band" aria-hidden="true"></div>
+  <section class="screen pv-wrap" id="s-portal">
+    <div class="pv-head">
+      <button class="portal-back" id="portalBack" type="button" aria-label="Back"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M14 4 7 11l7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div>
+        <div class="pv-kicker">Privacy hub</div>
+        <h1>Your data, your say</h1>
+        <p>Choose how Acme Cloud keeps in touch and how your information may be used. Nothing changes until you save.</p>
+      </div>
+    </div>
+
+    <div class="pv-grid">
+      <div class="pv-col">
+        <section class="pv-sec" id="pv-about">
+          <header><span class="pv-ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19c1-3.7 3.9-5.5 7.5-5.5s6.5 1.8 7.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div><h2>About you</h2><p>The details we hold on file, partly hidden for your privacy.</p></div></header>
+          <div class="who"><span class="ini" aria-hidden="true">CP</span><div><b>Customer PII Data</b><small>Account holder</small></div></div>
+          <div class="details">
+            <div class="dbox"><small>Born</small><span>DD / ** / 19**</span></div>
+            <div class="dbox"><small>Phone</small><span>+91 98XX XXX XXX</span></div>
+            <div class="dbox"><small>Email address</small><span>c***r@example.com</span></div>
+            <div class="dbox"><small>Tax ID (PAN)</small><span>ABC** ***1Z</span></div>
+          </div>
+          <div class="pv-actions"><button class="link" type="button">Show more details</button><button class="link" type="button">Something wrong? Ask for a correction</button></div>
+        </section>
+
+        <section class="pv-sec" id="pv-reach">
+          <header><span class="pv-ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 15V10a6 6 0 0 1 12 0v5l1.5 2h-15Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 20h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div><h2>Staying in touch</h2><p>Pick the channels we may use to tell you about new features, plans and offers. Service messages about your account always reach you.</p></div></header>
+          <ul class="pv-list" id="reachList">
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 15V10a6 6 0 0 1 12 0v5l1.5 2h-15Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 20h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="what"><b>App alerts</b><small>Notices inside the Acme Cloud app</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="App alerts" data-key="ch_app"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m3 6 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="what"><b>Email</b><small>Newsletters and offers to your inbox</small></span><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Email" data-key="ch_email"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A15 15 0 0 1 3 5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="what"><b>Phone calls</b><small>Occasional calls from our team</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Phone calls" data-key="ch_call"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 3a8 8 0 0 0-7 12l-1 4 4-1a8 8 0 1 0 4-15Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="what"><b>WhatsApp</b><small>Updates on WhatsApp</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="WhatsApp" data-key="ch_whatsapp"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="3" y="4" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 8h8M7 11h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="what"><b>Text messages</b><small>Short updates by SMS</small></span><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Text messages" data-key="ch_sms"></button></li>
+          </ul>
+        </section>
+
+        </div>
+      <div class="pv-col">
+        <section class="pv-sec" id="pv-offers">
+          <header><span class="pv-ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2 13.5 8H20l-5.2 3.8 2 6.2L11 14.2 5.2 18l2-6.2L2 8h6.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div><h2>Offer checks</h2><p>Let us check which offers from Acme Cloud and our partner brands suit you. We only look at the areas you switch on.</p></div></header>
+          <ul class="pv-list" id="offerList">
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 9v11M7 20h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="11" cy="7" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6.5 3.5a6.5 6.5 0 0 0 0 7M15.5 3.5a6.5 6.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="what"><b>Mobile and internet</b><small>Recharge plans, broadband and device upgrades</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Mobile and internet" data-key="of_telecom"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 7h14l-1 12H5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 7V6a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="what"><b>Shopping and lifestyle</b><small>Fashion, electronics and home deals</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Shopping and lifestyle" data-key="of_shopping"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="4" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 8 5 2.5L9 13Z" fill="currentColor"/></svg></span><span class="what"><b>Entertainment and streaming</b><small>Music, video and gaming subscriptions</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Entertainment and streaming" data-key="of_entertainment"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 6h14a2 2 0 0 1 2 2v9H5a2 2 0 0 1-2-2Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 6l11-3v3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="15" cy="12" r="1.3" fill="currentColor"/></svg></span><span class="what"><b>Payments and rewards</b><small>Wallets, cashback and loyalty points</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Payments and rewards" data-key="of_payments"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 12 20 4l-5 15-4-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m11 13 9-9" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="what"><b>Travel and experiences</b><small>Trips, events and dining</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Travel and experiences" data-key="of_travel"></button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 19S3 14 3 8.5a4 4 0 0 1 8-1 4 4 0 0 1 8 1C19 14 11 19 11 19Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="what"><b>Health and wellness</b><small>Fitness, care and insurance plans</small></span><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Health and wellness" data-key="of_health"></button></li>
+          </ul>
+        </section>
+
+<section class="pv-sec" id="pv-links">
+          <header><span class="pv-ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="3" width="8" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="12" y="11" width="8" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 7h4a2 2 0 0 1 2 2v2M12 15H8a2 2 0 0 1-2-2v-2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span><div><h2>Linked platforms</h2><p>Outside services you've allowed to share information with us. Unlink one at any time.</p></div></header>
+          <ul class="pv-list" id="platList">
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M8 12a4 4 0 0 0 6 .5l3-3a4 4 0 0 0-5.6-5.7L10 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 10a4 4 0 0 0-6-.5l-3 3a4 4 0 0 0 5.6 5.7L12 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="what"><b>DigiLocker</b><small>Government document wallet · <span class="status">Not linked</span></small></span><button class="mini-btn" type="button" data-plat="digilocker" data-linked="false">Link</button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M8 12a4 4 0 0 0 6 .5l3-3a4 4 0 0 0-5.6-5.7L10 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 10a4 4 0 0 0-6-.5l-3 3a4 4 0 0 0 5.6 5.7L12 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="what"><b>Aggregator1</b><small>Financial data sharing · <span class="status on">Linked</span></small></span><button class="mini-btn" type="button" data-plat="aggregator1" data-linked="true">Unlink</button></li>
+            <li class="pv-row"><span class="ri"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M8 12a4 4 0 0 0 6 .5l3-3a4 4 0 0 0-5.6-5.7L10 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 10a4 4 0 0 0-6-.5l-3 3a4 4 0 0 0 5.6 5.7L12 17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="what"><b>Aggregator2<span class="pill-new">New</span></b><small>Financial data sharing · <span class="status on">Linked</span></small></span><button class="mini-btn" type="button" data-plat="aggregator2" data-linked="true">Unlink</button></li>
+          </ul>
+        </section>
+
+        </div>
+      <aside class="pv-col pv-side" aria-label="Help and rights">
+          <div class="hcard lead">
+            <svg width="46" height="50" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 3 6 10v14c0 14 9 24 20 29 11-5 20-15 20-29V10Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M21 22a5 5 0 1 1 7 4.6c-1.3.6-2 1.6-2 3V31" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="26" cy="37" r="2" fill="currentColor"/></svg>
+            <p>How do we safeguard your data?</p>
+            <h3>With the Digital Personal Data Protection Act (DPDPA)</h3>
+            <p class="tag">#SafeguardYourData</p>
+            <button class="hbtn" type="button">Know DPDPA FAQs</button>
+          </div>
+          <div class="hcard">
+            <svg width="42" height="46" viewBox="0 0 48 52" aria-hidden="true"><path d="M6 4h36v32H26l-8 10v-10H6Z" fill="none" stroke="var(--brand)" stroke-width="3" stroke-linejoin="round"/><path d="M24 12v12" stroke="var(--brand)" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="30" r="2" fill="var(--brand)"/></svg>
+            <p>Have any issues</p>
+            <h3>about your consents?</h3>
+            <button class="hbtn" type="button">Click for support</button>
+          </div>
+          <div class="hcard">
+            <svg width="42" height="46" viewBox="0 0 48 52" aria-hidden="true"><path d="M24 3 6 10v13c0 13 8 22 18 26 10-4 18-13 18-26V10Z" fill="none" stroke="var(--brand)" stroke-width="3" stroke-linejoin="round"/><path d="m16 26 6 6 10-12" fill="none" stroke="var(--brand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Know your Rights</h3>
+            <p class="tag">#KnowYourRights</p>
+            <button class="hbtn" type="button">See your rights</button>
+          </div>
+        </aside>
+    </div>
+
+    <div class="pv-save">
+      <span id="portalStatus">Nothing changes until you save.</span>
+      <button class="btn btn-ghost" id="portalReset" type="button">Undo changes</button>
+      <button class="btn btn-primary" id="portalSave" type="button">Save my choices</button>
+    </div>
+  </section>
 </main>
 
 <!-- ===== Signed-in app ===== -->
@@ -435,12 +596,15 @@ function setConsent(purpose, item, status) {
 /* ---------- Navigation between the sign-in card and the app ---------- */
 function show(id) {
   const inApp = APP_SCREENS.includes(id);
-  $("#authArea").hidden = inApp;
+  const inPortal = id === "s-portal";
+  $("#authArea").hidden = inApp || inPortal;
   $("#appArea").hidden = !inApp;
-  $("#topnav").hidden = inApp;
+  $("#portalArea").hidden = !inPortal;
+  $("#topnav").hidden = inApp || inPortal;
+  $("#portalBtn").hidden = inPortal;
   $("#appActions").hidden = !inApp;
   $("#managePrefsBtn").hidden = id === "s-manage";
-  document.title = inApp ? "Acme Cloud – Home" : "Acme Cloud – Sign in";
+  document.title = inPortal ? "Acme Cloud – My Consent Preferences" : inApp ? "Acme Cloud – Home" : "Acme Cloud – Sign in";
   $$(".screen").forEach(s => s.classList.toggle("active", s.id === id));
   window.scrollTo({ top: 0 });
   const h = $(`#${id} h1, #${id} h2`);
@@ -752,6 +916,57 @@ async function sendPreferenceLink() {
   }
 }
 
+/* ---------- Future Preference Portal (demo: choices stay on this page) ---------- */
+let screenBeforePortal = "s-login", portalSaved = null;
+const portalState = () => ({
+  sw: $$("#s-portal .switch").map(b => b.getAttribute("aria-checked")),
+  pf: $$("#platList .mini-btn").map(b => b.dataset.linked)
+});
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+function setPlat(b, linked) {
+  b.dataset.linked = String(linked);
+  b.textContent = linked ? "Unlink" : "Link";
+  b.setAttribute("aria-label", `${linked ? "Unlink" : "Link"} ${b.closest(".pv-row").querySelector("b").firstChild.textContent}`);
+  const st = b.closest(".pv-row").querySelector(".status");
+  st.textContent = linked ? "Linked" : "Not linked"; st.classList.toggle("on", linked);
+}
+function portalCounts() {
+  return {
+    ch: $$("#reachList .switch[aria-checked=true]").length,
+    of: $$("#offerList .switch[aria-checked=true]").length,
+    pf: $$('#platList .mini-btn[data-linked="true"]').length
+  };
+}
+function portalChanged() { portalCounts(); $("#portalStatus").textContent = "You have unsaved changes."; }
+
+$("#portalBtn").addEventListener("click", () => {
+  const cur = $(".screen.active");
+  if (cur && cur.id !== "s-portal") screenBeforePortal = cur.id;
+  if (!portalSaved) portalSaved = portalState();
+  portalCounts();
+  show("s-portal");
+});
+$("#portalBack").addEventListener("click", () => show(screenBeforePortal));
+$$("#s-portal .switch").forEach(b => b.addEventListener("click", () => {
+  b.setAttribute("aria-checked", b.getAttribute("aria-checked") === "true" ? "false" : "true");
+  portalChanged();
+}));
+$$("#platList .mini-btn").forEach(b => b.addEventListener("click", () => {
+  setPlat(b, b.dataset.linked !== "true");
+  portalChanged();
+}));
+$("#portalSave").addEventListener("click", () => {
+  portalSaved = portalState();
+  const n = portalCounts();
+  $("#portalStatus").textContent = `Saved for this demo: ${plural(n.ch, "channel", "channels")}, ${plural(n.of, "offer check", "offer checks")}, ${plural(n.pf, "platform", "platforms")} linked.`;
+});
+$("#portalReset").addEventListener("click", () => {
+  if (!portalSaved) return;
+  $$("#s-portal .switch").forEach((b, i) => b.setAttribute("aria-checked", portalSaved.sw[i]));
+  $$("#platList .mini-btn").forEach((b, i) => setPlat(b, portalSaved.pf[i] === "true"));
+  portalCounts();
+  $("#portalStatus").textContent = "Changes undone.";
+});
 resetJourney();
 log("login", "viewed");
 </script>
